@@ -1,5 +1,5 @@
 const { network, ethers } = require("hardhat");
-const { developmentChains } = require("../helper-hardhat-config");
+const { developmentChains, DECIMALS, INITIAL_PRICE } = require("../helper-hardhat-config");
 
 const BASE_FEE = ethers.utils.parseEther("0.25");
 const GAS_FEE_LINK = 1e9;
@@ -14,6 +14,12 @@ module.exports = async ({ deployments, getNamedAccounts }) => {
             from: deployer,
             log: true,
             args: [BASE_FEE, GAS_FEE_LINK],
+        })
+
+        await deploy("MockV3Aggregator", {
+            from: deployer,
+            log: true,
+            args: [DECIMALS, INITIAL_PRICE]
         })
         log("mocks deployed");
         log("------------------------------------");
