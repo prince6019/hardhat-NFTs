@@ -1,6 +1,7 @@
 const { network, ethers } = require("hardhat");
 const { developmentChains, networkConfig } = require("../helper-hardhat-config");
 const fs = require("fs");
+const { verify } = require("../utils/verify");
 
 module.exports = async ({ deployments, getNamedAccounts }) => {
     const { deployer } = await getNamedAccounts();
